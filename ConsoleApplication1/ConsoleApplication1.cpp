@@ -228,7 +228,7 @@ void AVLTree<T>::balance(vector<AVLTreeNode<T>**> path) {  // starting from root
 	for (auto indirect : path) {
 		(*indirect)->updateValues();
 
-		if ((*indirect)->balanceFactor() >= 2 and (*indirect)->left->balanceFactor() >= 1)   // left - left
+		if ((*indirect)->balanceFactor() >= 2 and (*indirect)->left->balanceFactor() >= 0)   // left - left
 			*indirect = (*indirect)->right_rotate();
 
 		else if ((*indirect)->balanceFactor() >= 2) {  // left - right
@@ -236,7 +236,7 @@ void AVLTree<T>::balance(vector<AVLTreeNode<T>**> path) {  // starting from root
 			*indirect = (*indirect)->right_rotate();
 		}
 
-		else if ((*indirect)->balanceFactor() <= -2 and (*indirect)->right->balanceFactor() <= -1)  // right - right
+		else if ((*indirect)->balanceFactor() <= -2 and (*indirect)->right->balanceFactor() <= 0)  // right - right
 			*indirect = (*indirect)->left_rotate();
 
 		else if ((*indirect)->balanceFactor() <= -2) {  // right - left
