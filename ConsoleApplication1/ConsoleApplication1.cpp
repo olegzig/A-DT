@@ -378,10 +378,10 @@ int main()
 		}
 	} while (!correct);
 
-	int* arr{ new int[10] };
+	int* arr = new int[15];
 	int arrSize = 0;
 	if (input == "1") {
-		cout << "Input array of values (10-15 numbers). Input non-number value if you want to stop\n";
+		cout << "Input array of values (up to numbers). Input non-number value if you want to stop\n";
 
 		// ввод массива
 		try {
@@ -414,7 +414,8 @@ int main()
 
 	// пихаем в дерево
 	for (int i = 0; i < arrSize; i++) {
-		tree.insert(arr[i]);
+		int value = arr[i];
+		tree.insert(value);
 	}
 
 
@@ -422,5 +423,6 @@ int main()
 	cin >> input;
 	int result = tree.find(stoi(input));
 	cout << "index of element is: " << result;
+	tree.clear();
 	return 0;
 }
