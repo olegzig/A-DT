@@ -1,4 +1,10 @@
-﻿#include <iostream>
+﻿#include <algorithm>
+#include <iostream>
+#include <iterator>
+#include <sstream>
+#include <string>
+#include <vector>
+using namespace std;
 
 // структура для представления узлов дерева
 struct node 
@@ -85,37 +91,17 @@ node* findmin(node* p)
 	return p->left ? findmin(p->left) : p;
 }
 
-// удаление узла с минимальным ключом из дерева p
-node* removemin(node* p) 
-{
-	if (p->left == 0)
-		return p->right;
-	p->left = removemin(p->left);
-	return balance(p);
-}
-
-// удаление ключа k из дерева p
-node* remove(node* p, int k) 
-{
-	if (!p) return 0;
-	if (k < p->key)
-		p->left = remove(p->left, k);
-	else if (k > p->key)
-		p->right = remove(p->right, k);
-	else //  k == p->key 
-	{
-		node* q = p->left;
-		node* r = p->right;
-		delete p;
-		if (!r) return q;
-		node* min = findmin(r);
-		min->right = removemin(r);
-		min->left = q;
-		return balance(min);
-	}
-	return balance(p);
-}
 int main()
 {
-	std::cout << "Hello World!\n";
+	string input = "";
+	cout << "Input array of values (10-15 numbers): ";
+	cin >> input;
+
+	// тут мы конвертим строку в массив чисел 
+	stringstream ss(input);
+	vector<int> vector;
+	copy(istream_iterator<int>(ss), {}, back_inserter(vector));
+	copy(begin(vector), end(vector), ostream_iterator<int>(cout, " "));
+
+
 }
