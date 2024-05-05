@@ -394,8 +394,9 @@ int main()
 			} while (arrSize < 15);
 		}
 		catch (const invalid_argument& ex) {
-			cout << "Input completed!";
+			// ничего не делаем...
 		}
+		cout << "Input completed!";
 	}
 	else {
 		arr = new int[15]{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
