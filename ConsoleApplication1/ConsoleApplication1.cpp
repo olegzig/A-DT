@@ -11,7 +11,7 @@ struct AVLTreeNode {
 	AVLTreeNode* right;
 
 	const T value;
-	int count;  // how many nodes are there in this subtree
+	int count;
 	int height;
 
 	AVLTreeNode(T value);
@@ -50,7 +50,7 @@ AVLTreeNode<T>* AVLTreeNode<T>::left_rotate() {
 	right = right->left;
 	R->left = this;
 
-	this->updateValues();  // the order is important
+	this->updateValues();  
 	R->updateValues();
 
 	return R;
@@ -62,7 +62,7 @@ AVLTreeNode<T>* AVLTreeNode<T>::right_rotate() {
 	left = left->right;
 	L->right = this;
 
-	this->updateValues();  // the order is important
+	this->updateValues();  
 	L->updateValues();
 
 	return L;
@@ -92,8 +92,8 @@ AVLTree<T>::AVLTree() {
 
 template <class T>
 void AVLTree<T>::insert(T value) {
-	AVLTreeNode<T>** indirect = &root;  // to generalize insertion
-	vector<AVLTreeNode<T>**> path;  // to update height values
+	AVLTreeNode<T>** indirect = &root;  
+	vector<AVLTreeNode<T>**> path; 
 
 	while (*indirect != nullptr) {
 		path.push_back(indirect);
@@ -112,7 +112,7 @@ void AVLTree<T>::insert(T value) {
 }
 
 template <class T>
-void AVLTree<T>::balance(vector<AVLTreeNode<T>**> path) {  // starting from root
+void AVLTree<T>::balance(vector<AVLTreeNode<T>**> path) { 
 	reverse(path.begin(), path.end());
 
 	for (auto indirect : path) {
@@ -138,7 +138,7 @@ void AVLTree<T>::balance(vector<AVLTreeNode<T>**> path) {  // starting from root
 
 template <class T>
 int AVLTree<T>::find(T value) const {
-	AVLTreeNode<T>* direct = root;  // to generalize insertion
+	AVLTreeNode<T>* direct = root;  
 	int idx = 0;
 
 	while (direct != nullptr and direct->value != value) {
@@ -231,8 +231,7 @@ int main()
 
 	// пихаем в дерево
 	for (int i = 0; i < arrSize; i++) {
-		int value = arr[i];
-		tree.insert(value);
+		tree.insert(arr[i]);
 	}
 
 
