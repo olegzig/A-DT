@@ -370,7 +370,7 @@ int main()
 		cout << "First of all:\nInput 0, in you want to use default array.\nInput 1, if you want to input array yourself.\nYor decision: ";
 		cin >> input;
 
-		if (input == "0" && input == "1") {
+		if (input == "0" || input == "1") {
 			correct = true;
 		}
 		else {
@@ -380,7 +380,7 @@ int main()
 
 	int* arr{ new int[10] };
 	int arrSize = 0;
-	if (input == "0") {
+	if (input == "1") {
 		cout << "Input array of values (10-15 numbers). Input non-number value if you want to stop\n";
 
 		// ввод массива
@@ -392,6 +392,7 @@ int main()
 			if (input != "0" && number == 0) {
 				break;
 			}
+			arrSize++;
 		} while (arrSize < 15);
 	}
 	else {
@@ -402,7 +403,7 @@ int main()
 	// вывод массива
 	cout << "\narray:";
 	for (int i = 0; i < arrSize; i++) {
-		cout << arr[i];
+		cout << arr[i]<<" ";
 	}
 
 	// приступаем к работе с деревьями
