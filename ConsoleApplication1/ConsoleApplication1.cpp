@@ -405,10 +405,17 @@ int main()
 		cout << arr[i];
 	}
 
-	node node = new node;
+	// приступаем к работе с деревьями
+	AVLTree<long long> tree;
+
 	// пихаем в дерево
 	for (int i = 0; i < arrSize; i++) {
-		cout << arr[i];
+		tree.insert(arr[i]);
 	}
+
+	cout << "\ninput number to search:";
+	cin >> input;
+	int result = tree.find(stoi(input));
+	cout << "index of element is: " << result;
 	return 0;
 }
