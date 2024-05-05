@@ -384,26 +384,28 @@ int main()
 		cout << "Input array of values (10-15 numbers). Input non-number value if you want to stop\n";
 
 		// ввод массива
-		do {
-			cout << "Input value " << arrSize << ":";
-			cin >> input;
-			int number = stoi(input);
-
-			if (input != "0" && number == 0) {
-				break;
-			}
-			arrSize++;
-		} while (arrSize < 15);
+		try {
+			do {
+				cout << "Input value " << arrSize << ":";
+				cin >> input;
+				int number = stoi(input);
+				arr[arrSize] = number;
+				arrSize++;
+			} while (arrSize < 15);
+		}
+		catch (const invalid_argument& ex) {
+			cout << "Input completed!";
+		}
 	}
 	else {
-		arr = new int[15]{ 0,1, 2, 3, 4,5,6,7,8,9,10,11,12,13,14 };
+		arr = new int[15]{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
 		arrSize = 15;
 	}
 
 	// вывод массива
 	cout << "\narray:";
 	for (int i = 0; i < arrSize; i++) {
-		cout << arr[i]<<" ";
+		cout << arr[i] << " ";
 	}
 
 	// приступаем к работе с деревьями
@@ -413,6 +415,7 @@ int main()
 	for (int i = 0; i < arrSize; i++) {
 		tree.insert(arr[i]);
 	}
+
 
 	cout << "\ninput number to search:";
 	cin >> input;
