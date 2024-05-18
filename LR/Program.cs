@@ -24,6 +24,7 @@ internal class BinarySearchTree
     public void Insert(int data)
     {
         root = InsertRec(root, data);
+        printAll();
     }
 
     private Node InsertRec(Node root, int data)
@@ -77,6 +78,7 @@ internal class BinarySearchTree
             root.right = DeleteNode(root.right, root.data);
         }
 
+        printAll();
         return root;
     }
 
@@ -95,7 +97,6 @@ internal class BinarySearchTree
     {
         if (root.data.Equals(value))
             return root;
-
         else
         {
             return SearchHelper(value, root);
@@ -175,23 +176,51 @@ internal class BinarySearchTree
     public void printPostorder()
     { printPostorder(root); }
 
+    public void printAll()
+    {
+        Console.WriteLine("----------------------------------------------------");
+        Console.WriteLine("Прямой обход:");
+        printPreorder();
+
+        Console.WriteLine("\nСимметричный обход:");
+        printInorder();
+
+        Console.WriteLine("\nОбратный обход:");
+        printPostorder();
+        Console.WriteLine("\n----------------------------------------------------");
+    }
+
     private static void Main()
     {
         BinarySearchTree tree = new BinarySearchTree();
-        int[] elements = new int[] { 5, 2, 3, 4, 1, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+        int[] elements = new int[15];
+
+        Console.WriteLine("Ручной ввод, или автоматический?\nРучной ввод: 1\nАвтоматический: 0\n");
+        var input = Console.ReadLine();
+        if (input == "1")
+        {
+            for (int i = 0; i < 15; i++)
+            {
+                Console.Write("Введите элемент №"+ i +": ");
+                input = Console.ReadLine();
+                elements[i] = int.Parse(input);
+            }
+        }
+        else
+        {
+            if (input != "0")
+            {
+                Console.WriteLine("Неправильный ввод. Ставлю значения по умолчанию");
+            }
+            elements = new int[] { 5, 2, 3, 4, 1, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0 };
+        }
+
         foreach (int element in elements)
         {
             tree.Insert(element);
         }
 
-        Console.WriteLine("Прямой обход (NLR):");
-        tree.printPreorder();
-
-        Console.WriteLine("\nСимметричный обход:");
-        tree.printInorder();
-
-        Console.WriteLine("\nОбратный обход (LRN):");
-        tree.printPostorder();
+        tree.printAll();
 
         Console.ReadKey();
     }
