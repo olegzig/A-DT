@@ -21,10 +21,35 @@ namespace LR2
 
         private static void Main()
         {
-            int verticle = 1;
+            int verticle;
+            int input;
 
+            Console.Write("Введите вершину, смежные вершины который вы хотите узнать: ");
+            input = int.Parse(Console.ReadLine());
+            if(input > 7 || input < 1)
+            {
+                Console.WriteLine("Неправильный ввод! Устанавливаю значение \"1\"");
+                verticle = 1;
+            }
+            else
+            {
+                verticle = input;
+            }
             ShowAdjasmentVerticles(verticle);
+
+            Console.Write("Введите вершину, чтобы узнать из каких вершин в неё можно попасть: ");
+            input = int.Parse(Console.ReadLine());
+            if (input > 7 || input < 1)
+            {
+                Console.WriteLine("Неправильный ввод! Устанавливаю значение \"1\"");
+                verticle = 1;
+            }
+            else
+            {
+                verticle = input;
+            }
             ShowVerticlesFromWichYouCanGetToVerticle(verticle);
+
             FloydWarshall(adjacencyMatrix);
 
             Console.ReadKey();
