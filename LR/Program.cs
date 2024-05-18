@@ -24,6 +24,10 @@ internal class BinarySearchTree
     public void Insert(int data)
     {
         root = InsertRec(root, data);
+    }
+    public void InsertWithPrint(int data)
+    {
+        Insert(data);
         printAll();
     }
 
@@ -78,8 +82,13 @@ internal class BinarySearchTree
             root.right = DeleteNode(root.right, root.data);
         }
 
-        printAll();
         return root;
+    }
+    public Node DeleteNodeWithPrint(Node root, int data)
+    {
+        Node resultRoot =  DeleteNode(root, data);
+        printAll();
+        return resultRoot;
     }
 
     private int MinValue(Node root)
